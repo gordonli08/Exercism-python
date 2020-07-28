@@ -15,7 +15,7 @@ class Garden:
 
     def __init__(self, diagram, students=None):
         if not students:
-            students = defaultStudents.copy()
+            students = defaultStudents
         else:
             students = sorted(students)
         
@@ -24,8 +24,8 @@ class Garden:
         row_1, row_2 = diagram.splitlines()
         plants = [row_1[index:index+2]+row_2[index:index+2] for index in range(0,len(row_1),2)]
 
-        for plantgroup in plants:
-            person = students.pop(0)
+        for index, plantgroup in enumerate(plants):
+            person = students[index]
             self.student_plants[person] = [plant_lookup[plant] for plant in plantgroup]
 
     def plants(self,student):
